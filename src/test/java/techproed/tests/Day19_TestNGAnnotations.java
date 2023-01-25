@@ -2,7 +2,7 @@ package techproed.tests;
 
 import org.testng.annotations.*;
 
-public class C19_TestNGAnnotations {
+public class Day19_TestNGAnnotations {
     /*
 @Test : Test case ousturmak icin kullanilir
 @Before ve @After : 5 Before 5 After anotations var
