@@ -13,8 +13,8 @@ public class ExcelUtils {
     private Workbook workBook;
     private Sheet workSheet;
     private String path;
-//    Constructor:
-    public ExcelUtils(String path, String sheetName) {//This Constructor is to open and access the excel file
+    //    Constructor : Excel path i ve sayfaya ulasmak icn kullinir
+    public ExcelUtils(String path, String sheetName) {
         this.path = path;
         try {
             // Opening the Excel file
@@ -29,8 +29,8 @@ public class ExcelUtils {
             throw new RuntimeException(e);
         }
     }
-    //This will get the list of the data in the excel file
-    //This is a list of map of string. This takes the data as string and will return the data as a Map of String
+    //    Excel deki verileri List olarak almamizi saglar
+//    Exceldeki verileri Test sinifinda kullanmak icin bu metotu kullanacaz
     public List<Map<String, String>> getDataList() {
         // getting all columns
         List<String> columns = getColumnsNames();
@@ -50,15 +50,15 @@ public class ExcelUtils {
         }
         return data;
     }
-    //===============Getting the number of columns in a specific single row=================
+    //===============exceldeki toplan sutun sayisini return eder=================
     public int columnCount() {
         //getting how many numbers in row 1
         return workSheet.getRow(0).getLastCellNum();
     }
-    //===============how do you get the last row number?Index start at 0.====================
+    //===============exceldeki satir sayisini return eder====================
     public int rowCount() {
         return workSheet.getLastRowNum() + 1; }//adding 1 to get the actual count
-    //==============When you enter row and column number, then you get the data==========
+    //==============Satir ve sutun sayilari girildiginde, o hucredeki veriyi return eder==========
     public String getCellData(int rowNum, int colNum) {
         Cell cell;
         try {
@@ -69,7 +69,7 @@ public class ExcelUtils {
             throw new RuntimeException(e);
         }
     }
-    //============getting all data into two dimentional array and returning the data===
+    //============Exceldeki datalari 2 boyutlu array seklinde alir===
     public String[][] getDataArray() {
         String[][] data = new String[rowCount()][columnCount()];
         for (int i = 0; i < rowCount(); i++) {
@@ -80,7 +80,7 @@ public class ExcelUtils {
         }
         return data;
     }
-    //==============going to the first row and reading each column one by one==================//
+    //==============Sutun isimlerini verir==================//
     public List<String> getColumnsNames() {
         List<String> columns = new ArrayList<>();
         for (Cell cell : workSheet.getRow(0)) {
@@ -88,7 +88,7 @@ public class ExcelUtils {
         }
         return columns;
     }
-    //=========When you enter the row and column number, returning the value===============//
+    //=========Deger, Satir, Sutun girindiginde, O satur ve sutuna girilen veriyi ekler===============//
     public void setCellData(String value, int rowNum, int colNum) {
         Cell cell;
         Row row;
@@ -108,12 +108,12 @@ public class ExcelUtils {
             e.printStackTrace();
         }
     }
+    //    Bu metot ustdeki metotla birlikde calisir. Overload eder. Parametreleri farklidir
     public void setCellData(String value, String columnName, int row) {
         int column = getColumnsNames().indexOf(columnName);
         setCellData(value, row, column);
     }
-    //this method will return data table as 2d array
-    //so we need this format because of data provider.
+    //    Exceldeki datalari basliksiz olarak 2 boyurlu array seklinde return eder
     public String[][] getDataArrayWithoutFirstRow() {
         String[][] data = new String[rowCount()-1][columnCount()];
         for (int i = 1; i < rowCount(); i++) {
@@ -124,6 +124,5 @@ public class ExcelUtils {
         }
         return data;
     }
-
 }
 
