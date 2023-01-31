@@ -17,7 +17,7 @@ public class Day23_ExcelLogin {
     BlueRentalLoginPage blueRentalLoginPage;
     ExcelUtils excelUtils;
     List<Map<String, String>> excelDatalari;
-
+    //    Bu metot login sayfasina gitmek icin kullanililacak
     public void login(){
 //        Sayfaya git
         Driver.getDriver().get(ConfigReader.getProperty("app_url"));
@@ -48,44 +48,33 @@ public class Day23_ExcelLogin {
 //            home page logine tikla    --->>> try catch
             blueRentalHomePage.loginLink.click();
             ReusableMethods.waitFor(1);
+//        LOGIN SAYFASINDAYIZ
         }catch (Exception e){
         }
     }
     @Test
     public void customerLogin(){
-        String path ="./src/test/java/resources/mysmoketestdata.xlsx"; // ./ ekledik ki onde farkli farkli dosyalar vardir onlari gec dedik.
-//      ./ ==> ONCEKI TUM DOSYALARI ICER. RELATIVE PATH.
-        String  sayfa = "customer_info";
-
-//      DATALARI EXCEL UTILS METHODLARINI KULLANARAK BU SINIFA ALACAZ
+        String path="./src/test/java/resources/mysmoketestdata.xlsx";
+//        ./ ONCEKI TUM DOSYALARI ICER. RELATIVE PATH.
+        String sayfa = "customer_info";
+//        DATALARI EXCEL UTILS METOTLARINI KULLANARAK BURAYA ALACAZ
         excelUtils = new ExcelUtils(path,sayfa);
-//      excel datalarini getDataList method'u ile cekelim
+//        excel datalarini getDataList metotu ile cekelim
         excelDatalari = excelUtils.getDataList();
-
-//      LOOP KULLANARAK DATALARI TEK TEK TEST CASEDE KULLAN
-
-        for (Map<String, String> data : excelDatalari) {
-
-            login(); // Her loop'da login sayfasina goturecek
-//          kullanici adini gir
+//        LOOP KULLANARAK DATALARI TEK TEK TEST CASEDE KULLNA
+        for (Map<String,String> data : excelDatalari){
+            login();//Her Loopda Login Sayfasina Goturecek
+//            kullanici adini gir
             ReusableMethods.waitFor(1);
-
-            blueRentalLoginPage.email.sendKeys(data.get("username"));
-
-//          kullanici sifresini gir
+            blueRentalLoginPage.emailBox.sendKeys(data.get("username"));
+//            kullanici sifresini gir
             ReusableMethods.waitFor(1);
-
-            blueRentalLoginPage.password.sendKeys(data.get("password"));
-
-//          login button'una tikla
+            blueRentalLoginPage.passwordBox.sendKeys(data.get("password"));
+//            ligin buttonuna tikla
             ReusableMethods.waitFor(1);
-
             blueRentalLoginPage.loginButton.click();
-
             ReusableMethods.waitFor(1);
-
         }
-
     }
 }
 /*

@@ -27,8 +27,8 @@ Admin password: 12345
         blueRentalHomePage = new BlueRentalHomePage();
         blueRentalLoginPage = new BlueRentalLoginPage();
         blueRentalHomePage.loginLink.click();
-        blueRentalLoginPage.email.sendKeys(ConfigReader.getProperty("admin_email"));
-        blueRentalLoginPage.password.sendKeys(ConfigReader.getProperty("admin_password"));
+        blueRentalLoginPage.emailBox.sendKeys(ConfigReader.getProperty("admin_email"));
+        blueRentalLoginPage.passwordBox.sendKeys(ConfigReader.getProperty("admin_password"));
         blueRentalLoginPage.loginButton.click();
 
         Assert.assertTrue(blueRentalHomePage.userID.isDisplayed());

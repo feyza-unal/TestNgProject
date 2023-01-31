@@ -27,8 +27,8 @@ Error: User with email fake@bluerentalcars.com not found
             blueRentalHomePage = new BlueRentalHomePage();
             blueRentalLoginPage = new BlueRentalLoginPage();
             blueRentalHomePage.loginLink.click();
-            blueRentalLoginPage.email.sendKeys(ConfigReader.getProperty("fake_email"));
-            blueRentalLoginPage.password.sendKeys(ConfigReader.getProperty("fake_pass"));
+            blueRentalLoginPage.emailBox.sendKeys(ConfigReader.getProperty("fake_email"));
+            blueRentalLoginPage.passwordBox.sendKeys(ConfigReader.getProperty("fake_pass"));
             blueRentalLoginPage.loginButton.click();
             Thread.sleep(2000);
             Assert.assertEquals(blueRentalLoginPage.error_message_1.getText(),"User with email fake@bluerentalcars.com not found");

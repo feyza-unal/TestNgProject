@@ -4,7 +4,11 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class Day20_SoftAssertion {
-
+/*
+SoftAssertion baslangic ve bitis satirlari arasindaki tum assertion'lari yapip bitis satirina geldiginde
+bize buldugu tum hatalari rapor eder. (baslangic ve bitis belirtilmeli)
+Ilk olarak SoftAssert obj olusturulur
+ */
     @Test
     public void softAssertTest(){
 
@@ -18,8 +22,12 @@ public class Day20_SoftAssertion {
         softAssert.assertTrue(true);//PASS
         System.out.println("Satir 20");
 
-        softAssert.assertAll();
-        //KULLANMAMIZ SART. PASS yada FAIL olarak assertionlari isaretler
+// Softassert ile mesaj yazabiliriz
+//        softAssert.assertTrue("JAVA".contains("U"),"string u harfi icermiyor");
+
+        softAssert.assertAll(); //bitis satiri
+        //KULLANMAMIZ SART. Yazilmazsa calismaz. PASS yada FAIL olarak assertionlari isaretler
+        //fail alirsa  assertAll() dan sonraki kisimlar calismaz
     }
 
 }
