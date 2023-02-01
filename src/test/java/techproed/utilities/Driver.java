@@ -8,12 +8,20 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
+/*
+       POM'da Driver icin TestBase classina extend etmek yerine
+       Driver classindan static methodlar kullanarak driver olusturup,
+       ilgili ayarlarin yapilmasi ve en sonda driverin kapatilmasi tercih edilmistir
+
+       Bugune kadar TestBase classina extend ederek kullandigimiz driver yerine
+       Driver classindan getDriver static methodunu kullanacagiz
+ */
 
 public class Driver {
     //    Driver.getDriver(); -> driver
     private static WebDriver driver;
     //    getDriver() is used to instantiate the driver object
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver(){//istedigimiz zaman acilmasi icin
         if (driver==null){
             switch (ConfigReader.getProperty("browser")) {
                 case "chrome":
@@ -42,7 +50,7 @@ public class Driver {
         return driver;
     }
     //    closeDriver() is used to close the driver
-    public static void closeDriver(){
+    public static void closeDriver(){ //istedigimiz zaman kapanmasi icin
 //        if driver is already being used(pointing an object)
 //        then quit the driver
         if (driver!=null){
