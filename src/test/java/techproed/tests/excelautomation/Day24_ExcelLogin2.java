@@ -1,5 +1,4 @@
 package techproed.tests.excelautomation;
-
 import org.testng.annotations.Test;
 import techproed.pages.BlueRentalHomePage;
 import techproed.pages.BlueRentalLoginPage;
@@ -11,7 +10,6 @@ import techproed.utilities.ReusableMethods;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
 public class Day24_ExcelLogin2 {
 
     BlueRentalHomePage blueRentalHomePage;
@@ -25,7 +23,7 @@ public class Day24_ExcelLogin2 {
         String sayfa = "customer_info";
         excelUtils=new ExcelUtils(path,sayfa);
         excelDatalari=excelUtils.getDataList();
-        Driver.getDriver().get(ConfigReader.getProperty("app_url"));
+//        Driver.getDriver().get(ConfigReader.getProperty("app_url"));
 //        home page logine tikla
         for (Map<String,String> data:excelDatalari) {
             //        Sayfaya git

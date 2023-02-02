@@ -1,5 +1,6 @@
 package techproed.tests.excelautomation;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import techproed.pages.BlueRentalHomePage;
 import techproed.pages.BlueRentalLoginPage;
@@ -8,6 +9,7 @@ import techproed.utilities.Driver;
 import techproed.utilities.ExcelUtils;
 import techproed.utilities.ReusableMethods;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +19,7 @@ public class Day23_ExcelLogin {
     BlueRentalLoginPage blueRentalLoginPage;
     ExcelUtils excelUtils;
     List<Map<String, String>> excelDatalari;
+
     //    Bu metot login sayfasina gitmek icin kullanililacak
     public void login(){
 //        Sayfaya git
@@ -24,6 +27,7 @@ public class Day23_ExcelLogin {
 //        home page logine tikla
         blueRentalHomePage= new BlueRentalHomePage();
         blueRentalLoginPage = new BlueRentalLoginPage();
+
 //        ------SADECE ILK GIRIS---------
 //        loginLink butonu sadece ilk girisde sayfada gorunur
 //        ikinci ve ucunci girislerde sayfada gorunmeyeceginden NOSUCHELEMENTEXCEPTION alinir
@@ -34,6 +38,7 @@ public class Day23_ExcelLogin {
 //        LOGIN SAYFASINDAYIZ
         }catch (Exception e){
         }
+
 //      -------------SONRAKI GIRISLER------
         try{
 //            kullanici ID ye tikla      --->>> try catch
@@ -50,10 +55,12 @@ public class Day23_ExcelLogin {
             ReusableMethods.waitFor(1);
 //        LOGIN SAYFASINDAYIZ
         }catch (Exception e){
+
         }
     }
+
     @Test
-    public void customerLogin(){
+    public void customerLogin() throws IOException {
         String path="./src/test/java/resources/mysmoketestdata.xlsx";
 //        ./ ONCEKI TUM DOSYALARI ICER. RELATIVE PATH.
         String sayfa = "customer_info";
@@ -74,14 +81,25 @@ public class Day23_ExcelLogin {
             ReusableMethods.waitFor(1);
             blueRentalLoginPage.loginButton.click();
             ReusableMethods.waitFor(1);
+//            giris isleminin basarili oldugunu gostermek icin assertion
+            ReusableMethods.verifyElementDisplayed(blueRentalHomePage.userID);
+            ReusableMethods.waitFor(1);
+//            Her bir girisden sonra ekran goruntusu aldik
+            ReusableMethods.getScreenshot("EkranGoruntusu");
         }
     }
+    @AfterMethod
+    public void tearDown(){
+        Driver.closeDriver();
+    }
 }
+
 /*
-sam.walker@bluerentalcars.com   c!fas_art
-kate.brown@bluerentalcars.com   tad1$Fas
-raj.khan@bluerentalcars.com v7Hg_va^
-pam.raymond@bluerentalcars.com  Nga^g6!
+sam.walker@bluerentalcars.com	c!fas_art
+kate.brown@bluerentalcars.com	tad1$Fas
+raj.khan@bluerentalcars.com	v7Hg_va^
+pam.raymond@bluerentalcars.com	Nga^g6!
+
 ------ILK GIRIS---------
 HOME PAGE DEYIZ
 home page logine tikla --->>> try catch
@@ -95,6 +113,7 @@ kullanici ID ye tikla      --->>> try catch
 Logout linkine tikla       --->>> try catch
 OK e tikla                --->>> try catch
 home page logine tikla    --->>> try catch
+
 LOGIN PAGE DEYIZ
 kullanici adini gir(excelden al)
 kullanici sifresini git(excelden al)
