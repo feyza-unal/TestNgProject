@@ -1,14 +1,11 @@
 package techproed.utilities;
-
 import java.io.FileInputStream;
 import java.util.Properties;
-
 public class ConfigReader {
-
-//    Bu sinif configuration.properties file i okumak icin kullanilir
+    //    Bu sinif configuration.properties file i okumak icin kullanilir
 //    property file i okumak icin properti objecsi kullanilir
     private static Properties properties;
-//    static block : ilk calisir
+    //    static block : ilk calisir
     static {
 //        data cekmek istedigim dosyaninin path i
         String path="configuration.properties";
@@ -25,7 +22,6 @@ public class ConfigReader {
             e.printStackTrace();
         }
     }
-
 //    ConfigReader.getProperty("browser"); -> chrome
 //    ConfigReader.getProperty("amazon_url"); -> https://www.amazon.com
 //    ConfigReader.getProperty("username"); -> ali

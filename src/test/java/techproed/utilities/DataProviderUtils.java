@@ -1,32 +1,27 @@
 package techproed.utilities;
-
 import org.testng.annotations.DataProvider;
-
 public class DataProviderUtils {
-
     @DataProvider
-    public  Object[][] musteriVerileri(){
-      Object[][] musteriGirisBilgileri = {
-              {"menager1","12345"},
-              {"menager2","98765"},
-              {"menager3","5678"}
-      };
-    return musteriGirisBilgileri;
+    public Object[][] musteriVerileri(){
+        Object [][] musteriGirisBilgileri = {
+                {"menejer1","12345","besiktas"},
+                {"menejer2","98765","cebeci"},
+                {"menejer3","5678","karsiyaka"}
+        };
+        return musteriGirisBilgileri;
     }
-
     @DataProvider
-    public  Object[][] musteriHizmetleriVerileri(){
-      Object[][] musteriHizmetleriGirisBilgileri = {
-              {"adam1","3456"},
-              {"ali2","1234"},
-              {"nancy3","7890"}
-      };
-    return musteriHizmetleriGirisBilgileri;
+    public Object[][] musteriHizmetleriVerileri(){
+        Object [][] musteriHizmetleriGirisBilgileri = {
+                {"adam1","3456"},
+                {"ali2","1234"},
+                {"nancy3","7890"}
+        };
+        return musteriHizmetleriGirisBilgileri;
     }
-
     @DataProvider
-    public  Object[][] PersonelVerileri(){
-        Object[][] personelGirisBilgileri = {
+    public Object[][] personelVerileri(){
+        Object [][] personelGirisBilgileri = {
                 {"rukiye1","abc1"},
                 {"mehmet2","123r"},
                 {"emin3","3edc"},
@@ -35,9 +30,7 @@ public class DataProviderUtils {
         };
         return personelGirisBilgileri;
     }
-
-
-//    Excelden dataprovider a data gelir
+    //    Excelden dataprovider a data gelir
 //    Burdan da Test case e gider
     @DataProvider
     public Object[][] customerData(){
@@ -49,5 +42,4 @@ public class DataProviderUtils {
         Object[][] musteriBilgileri = excelUtils.getDataArrayWithoutFirstRow();
         return musteriBilgileri;
     }
-
 }
